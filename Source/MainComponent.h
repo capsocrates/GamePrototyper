@@ -11,12 +11,22 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+#include <boost/optional.hpp>
 
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
+struct trait
+{
+    trait() = delete;
+    std::string name;
+    boost::optional<std::vector<std::string>> requirements;
+    boost::optional<std::vector<std::string>> keywords;
+    std::string effect;
+};
+
 class MainContentComponent   : public Component
 {
 public:
@@ -28,7 +38,7 @@ public:
     void resized();
 
 private:
-    std::vector<juce::String> m_xml_contents;
+    std::vector<trait> elements;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };

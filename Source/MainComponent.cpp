@@ -56,7 +56,16 @@ auto operator<<(std::ostream& os, const trait& to_print) -> std::ostream&
 
 //==============================================================================
 MainContentComponent::MainContentComponent()
+    : load_xml("load_xml")
 {
+    load_xml.setButtonText("Load Traits XML");
+    load_xml.setTopLeftPosition(5, 15);
+    addAndMakeVisible(load_xml);
+    assert(getChildComponent(0) != nullptr);
+    assert(getChildComponent(0) == &load_xml);
+    assert(load_xml.isVisible());
+    assert(isShowing());
+    assert(load_xml.isShowing());
     setSize(600, 400);
 
     const auto xml_file = juce::File("D:\\dev\\source\\SuddenMagic\\GamePrototyper\\test.xml");
@@ -114,7 +123,7 @@ void MainContentComponent::paint(Graphics& g)
     }
     );
     juce::String drawable(to_draw);
-    g.drawMultiLineText(drawable, 5, 15, getLocalBounds().getWidth() - 10);
+    g.drawMultiLineText(drawable, 5, load_xml.getPosition().getY() + load_xml.getHeight() + 5, getLocalBounds().getWidth() - 10);
 }
 
 void MainContentComponent::resized()

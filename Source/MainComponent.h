@@ -38,6 +38,7 @@ public:
     void resized();
 
 private:
+    juce::TextButton load_xml;
     std::vector<trait> elements;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
